@@ -1,24 +1,16 @@
 const express = require("express");
 const router = express.Router();
 
-router.get("/infos", (req, res) => {
-  res.json({ voiture: "Toyota", name: "Supra", model: "2000" });
-});
+const controller = require("./src/controllers/controller");
+// const infosPage = require("./src/controllers/controller");
+// const redirect = require("./src/controllers/controller");
+// const userController = require("./src/controllers/controller");
 
-router.get("/secret", (req, res) => {
-  res.status(201).send("trouvé page secrète");
-});
+router.get("/", controller.homePage);
+router.get("/infos", controller.aboutPage);
+router.get("/about", controller.infosPage);
+router.get("/red", controller.redirect);
+router.get("/utilisateur/:id", controller.userController);
+router.get("*", controller.page404);
 
-router.get("/red", (req, res) => {
-  res.redirect("/");
-});
-
-router.get("/utilisateur/:id", (req, res) => {
-  const userId = req.params.id;
-  res.send(`Informations sur l'utilisateur ${userId}`);
-});
-
-router.get("*", (req, res) => {
-  res.status(404).send("Page non trouvée");
-});
 module.exports = router;
