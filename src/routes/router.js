@@ -4,8 +4,8 @@ const router = express.Router();
 const controller = require("../controllers/controller");
 
 router.get("/", controller.homePage);
-router.get("/infos", controller.aboutPage);
-router.get("/about", controller.infosPage);
+router.get("/infos", controller.infosPage);
+router.get("/about", controller.aboutPage);
 router.get("/red", controller.redirect);
 router.get("/utilisateur/:id", controller.userController);
 router.get("*", controller.page404);
